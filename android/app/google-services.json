@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "344648531324",
+    "firebase_url": "https://timetable-71afd.firebaseio.com",
+    "project_id": "timetable-71afd",
+    "storage_bucket": "timetable-71afd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:344648531324:android:baeebf02f9c82beb72b8f9",
+        "android_client_info": {
+          "package_name": "com.mayur.timetable"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "344648531324-hp03gpheivs7u18vg1745qe8l9in7mom.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mayur.timetable",
+            "certificate_hash": "1844be42140882866ddab167449d2be991502536"
+          }
+        },
+        {
+          "client_id": "344648531324-f2rn7g6937sqanjdbuvntn3951g0vomn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDj6bct6aCtQV8t-jG4zlRHQituJjpRaLE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "344648531324-f2rn7g6937sqanjdbuvntn3951g0vomn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
