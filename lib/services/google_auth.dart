@@ -5,7 +5,6 @@ class GoogleAuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
   final GoogleSignIn _googleSignIn = new GoogleSignIn();
 
-  //Auth change user stream
   //sign in with Google
   Future<FirebaseUser> googleSignIn() async {
     try{

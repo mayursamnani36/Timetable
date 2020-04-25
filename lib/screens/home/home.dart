@@ -1,6 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:timetable/screens/authenticate/sign_in.dart';
+import 'package:timetable/services/google_auth.dart';
 import '../../constants/constants.dart';
+
+GoogleAuthService service = new GoogleAuthService();
 
 class Home extends StatefulWidget {
   @override
@@ -34,10 +38,14 @@ class _HomeState extends State<Home> {
               ),
             ),
             ListTile(
-              title: Text('Themes'),
-              leading: Icon(Icons.spa),
+              title: Text('Logout'),
+              leading: Icon(Icons.exit_to_app),
               onTap: () {
+                service.googleSignOut();
                 Navigator.pop(context);
+                Navigator.push(context, MaterialPageRoute(
+                  builder: (context)=>SignIn(),
+                ));
               },
             ),
           ],

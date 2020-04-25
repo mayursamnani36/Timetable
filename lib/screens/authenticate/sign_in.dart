@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:timetable/screens/home/home.dart';
@@ -45,6 +44,7 @@ class SignIn extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
                 ),
+            Container(child: Divider(color: Colors.white,), padding: EdgeInsets.fromLTRB(80, 10, 80, 0), ),
             SizedBox(height: 50,),
             Column(
               children: <Widget>[
