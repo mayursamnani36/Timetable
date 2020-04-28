@@ -51,12 +51,19 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   fonts:
-    # - family: IndieFlower-Regular     
-    #   fonts:
-    #     - asset: assets/fonts/IndieFlower-Regular.ttf
-    - family: Courgette-Regular     
+    - family: IndieFlower     
+      fonts:
+        - asset: assets/fonts/IndieFlower-Regular.ttf
+    - family: Courgette     
       fonts:
         - asset: assets/fonts/Courgette-Regular.ttf
+    - family: Ubuntu
+      fonts:
+        - asset: assets/fonts/Ubuntu-Bold.ttf
+    - family: Montserrat
+      fonts:
+        - asset: assets/fonts/Montserrat-SemiBold.ttf
+        - asset: assets/fonts/Montserrat-Regular.ttf
   
   # To add assets to your application, add an assets section, like this:
   # assets:
