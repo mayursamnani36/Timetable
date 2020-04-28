@@ -43,7 +43,7 @@ import 'package:google_sign_in/google_sign_in.dart';
   }
 
   //logout
-  void googleSignOut() async {
+  Future<void>googleSignOut() async {
     await _auth.signOut();
     await _googleSignIn.signOut();
     print("User signed out");
