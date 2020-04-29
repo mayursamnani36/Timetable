@@ -1,5 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:timetable/screens/authenticate/login.dart';
+import 'package:timetable/screens/authenticate/register.dart';
 import 'package:timetable/screens/home/home.dart';
 import 'package:timetable/services/auth.dart';
 import 'package:timetable/services/google_auth.dart';
@@ -31,6 +34,41 @@ class SignIn extends StatelessWidget {
             ),
             
             SizedBox(height: 80,),
+
+            Column(
+    
+              children: <Widget>[
+                FlatButton(
+                  padding: EdgeInsets.fromLTRB(60, 10, 60, 10),
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),),
+                  color: Colors.white,
+                  child: Text("Register", style: TextStyle(color: Colors.blue[900], fontFamily: 'Montserrat', fontSize: 20),),
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/registerroute');},
+              ),
+
+                SizedBox(height: 10),              
+
+                FlatButton(
+                  padding: EdgeInsets.fromLTRB(70, 10, 70, 10),
+                  color: Colors.blue[900],
+                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10),
+                  side: BorderSide(width: 2, color: Colors.white,),),
+                  child: Text("Login", style: TextStyle(fontSize: 20, color: Colors.white),),
+                  onPressed: (){
+                    Navigator.pushNamed(context, '/loginroute');},
+                ),
+              ]
+            ),
+
+            SizedBox(height: 40,),
+            
+            Text(
+                  "OR",
+                  textAlign: TextAlign.center,
+                  style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold, fontSize: 25),
+                ),
+            SizedBox(height: 40,),
             
             Text(
                   "Sign In",
@@ -39,17 +77,15 @@ class SignIn extends StatelessWidget {
                 ),
             
             Container(child: Divider(color: Colors.white,), padding: EdgeInsets.fromLTRB(80, 10, 80, 0),),
-            SizedBox(height: 50,),
+            SizedBox(height: 30,),
             
             Column(
               children: <Widget>[
                 IconButton(
                   icon: Icon(FontAwesomeIcons.google, size: 30, color: Colors.white,),
-                  onPressed: () {googleSignIn().whenComplete((){
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder:(context){return Home();}
-                    ));
-                  });},
+                  onPressed: () async {
+                    await googleSignIn();
+                    },
                 ),
                 SizedBox(height: 20,),
                 FloatingActionButton(
