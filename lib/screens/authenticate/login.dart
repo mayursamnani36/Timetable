@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:timetable/constants/constants.dart';
+import 'package:timetable/services/auth.dart';
 
 class Login extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class _LoginState extends State<Login> {
 
   String email="";
   String password="";
+  String error = "";
+  final _formKey = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
@@ -28,6 +31,7 @@ class _LoginState extends State<Login> {
           child: Container(
             padding: EdgeInsets.all(50),
             child: Form(
+              key: _formKey,
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
@@ -40,6 +44,7 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 100,),
                   
                   TextFormField(
+                    validator: (val)=> (val.contains('@')&&val.contains('.')) ?  null: 'Enter a valid email',
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white54)),
                       focusedBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white)),
@@ -57,6 +62,7 @@ class _LoginState extends State<Login> {
                   SizedBox(height: 15,),
 
                   TextFormField(
+                    validator: (val) => val.length > 7 ? null : 'password must be atleast 8 characters long'  ,
                     obscureText: true,
                     decoration: InputDecoration(
                       enabledBorder: UnderlineInputBorder(borderSide: BorderSide(color: Colors.white54)),
@@ -77,8 +83,33 @@ class _LoginState extends State<Login> {
                     color: Colors.white,
                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10), side: BorderSide(width: 3, color: Colors.white,),),
                     child: Text( "Login" , style: TextStyle(fontSize: 20, color: Colors.blue[900],)),
-                    onPressed: (){print(email); print(password);},
+                    onPressed: ()async{
+                      try{
+                        if(_formKey.currentState.validate()){
+                          dynamic result = AuthService().signInWithEmailAndPassword(email, password);
+                          if(result==null){setState(() {
+                            error = 'Could not sign in';
+                          });}
+                          else{Navigator.pushNamed(context, '/');}
+                        }
+                      }
+                      on PlatformException catch(e){
+                        setState(() {
+                          error = e.toString();
+                        });
+                      }
+                      catch(e){
+                        setState(() {
+                          error = 'Error occured';
+                        });
+                      }
+                    },
                  ),
+                 SizedBox(height: 20),
+                 Text(
+                   error,
+                   style: TextStyle(color: Colors.red, fontSize: 14),
+                 )
               ],
             ),
           ),
@@ -87,3 +118,6 @@ class _LoginState extends State<Login> {
     );
   }
 }
+
+//TODO ek toh navigation jisme bohot baar back lene par show ho rha hai after login or register
+// TODO Renderflex overflow

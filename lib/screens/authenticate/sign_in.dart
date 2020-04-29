@@ -1,9 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:timetable/screens/authenticate/login.dart';
-import 'package:timetable/screens/authenticate/register.dart';
-import 'package:timetable/screens/home/home.dart';
 import 'package:timetable/services/auth.dart';
 import 'package:timetable/services/google_auth.dart';
 

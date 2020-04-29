@@ -14,9 +14,7 @@ class AuthService{
     try{
       AuthResult result = await _auth.createUserWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = result.user;
-      await user.sendEmailVerification();
-      if(user.isEmailVerified){return user;}
-      return null; //here user can be FirebaseUser or null this is checked in the form
+      return user; //here user can be FirebaseUser or null this is checked in the form
     }
     catch(e){
       print(e.toString());
