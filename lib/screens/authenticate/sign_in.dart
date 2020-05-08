@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:timetable/services/auth.dart';
 import 'package:timetable/services/google_auth.dart';
 
 class SignIn extends StatelessWidget {
@@ -82,15 +81,6 @@ class SignIn extends StatelessWidget {
                   onPressed: () async {
                     await googleSignIn();
                     },
-                ),
-                SizedBox(height: 20,),
-                FloatingActionButton(
-                  onPressed: () async{
-                    await googleSignOut();
-                    await AuthService().signOut();
-                    },
-                  backgroundColor: Colors.black,
-                  child: Icon(Icons.exit_to_app),
                 ),
               ]
             ),
