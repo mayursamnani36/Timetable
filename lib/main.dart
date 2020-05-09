@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:timetable/screens/authenticate/login.dart';
 import 'package:timetable/screens/authenticate/register.dart';
 import 'package:timetable/screens/authenticate/sign_in.dart';
+import 'package:timetable/screens/home/add.dart';
 import 'package:timetable/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:timetable/services/auth.dart';
@@ -16,6 +17,7 @@ class MyApp extends StatelessWidget {
       value: AuthService().user,
       child: MaterialApp(
         theme: ThemeData(
+          primarySwatch: Colors.indigo,
           fontFamily: 'Montserrat',
         ),
         routes: {
@@ -23,6 +25,7 @@ class MyApp extends StatelessWidget {
           '/loginroute': (context) => Login(),
           '/registerroute': (context) => Register(),
           '/signinroute': (context) => SignIn(),
+          '/addroute': (context) => Add(),
         },
       ),
     );

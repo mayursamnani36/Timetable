@@ -4,33 +4,44 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:timetable/services/auth.dart';
 import 'package:timetable/services/google_auth.dart';
 
-String name = "Unknown";
-String email = "Unknown";
-String url =
-    "https://www.vippng.com/png/detail/416-4161690_empty-profile-picture-blank-avatar-image-circle.png";
-
-void inputData() async {
-  FirebaseUser user = await AuthService().getUser();
-  name = user.displayName;
-  email = user.email;
-  url = user.photoUrl;
-}
-
 class Home extends StatefulWidget {
+ 
   @override
   _HomeState createState() => _HomeState();
 }
 
+
 class _HomeState extends State<Home> {
+  String name = "";
+  String email = "";
+  String url = "";
+
+  void inputData(String tempName, String tempEmail, String tempUrl) async {
+  FirebaseUser user = await AuthService().getUser();
+  user.displayName!=null ? tempName = user.displayName: tempName = "Unknown";
+  user.email!=null ? tempEmail = user.email: tempEmail = "Unknown";
+  user.photoUrl!=null ? tempUrl = user.photoUrl: tempUrl = "https://www.vippng.com/png/full/203-2034148_font-awesome-user-icon-circle.png";
+  setState(() {
+    name = tempName;
+    email=tempEmail;
+    url = tempUrl;
+  }); 
+}
+
   @override
+    void initState() {
+        super.initState();
+        inputData('','','');
+    }
+
+  @override 
   Widget build(BuildContext context) {
-    inputData();
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
       ),
       drawer: Drawer(
-        child: ListView(
+        child: ListView( 
           padding: EdgeInsets.zero,
           children: <Widget>[
             UserAccountsDrawerHeader(
@@ -60,7 +71,7 @@ class _HomeState extends State<Home> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () {},
+        onPressed: () {Navigator.pushNamed(context, '/addroute');},
         child: Icon(FontAwesomeIcons.plus),
         backgroundColor: Color(0Xff7ac143),
       ),
