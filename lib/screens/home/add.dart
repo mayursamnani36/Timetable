@@ -1,6 +1,9 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:timetable/constants/constants.dart';
+import 'package:timetable/constants/functions.dart';
+import 'package:timetable/services/auth.dart';
 
 class Add extends StatefulWidget {
   @override
@@ -9,28 +12,27 @@ class Add extends StatefulWidget {
 
 class _AddState extends State<Add> {
 
-  void showAlert(){
-    showDialog(
-      context: context,
-      builder: (BuildContext context){
-        return AlertDialog(
-          title: Text("Alert"),
-          content: Text("Choose a valid Time"),
-          actions: <Widget>[
-            FlatButton(child: Text("Close"), onPressed: (){Navigator.pop(context);},),
-          ],
-        );
-      }
-    );
-  }
-
   //state
     TimeOfDay _time = TimeOfDay.now();
     TimeOfDay picked;
-    String startTime;
-    String endTime;
-    String task;
+    String startTime, endTime, task;
+    bool deleted = false;
+    FirebaseUser user;
     final _formKey = GlobalKey<FormState>();
+    final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
+
+    void inputData()async{
+      user = await AuthService().getUser();
+    }
+
+    void showSnackBar(){
+      final snackBar = SnackBar(
+        content: Text("TimeTable Created"),
+        duration: Duration(seconds: 3),
+        backgroundColor: Color(0Xff7ac143),
+        );
+        _scaffoldKey.currentState.showSnackBar(snackBar);
+    }
 
   @override
     void initState() {
@@ -38,11 +40,12 @@ class _AddState extends State<Add> {
         startTime = "Not selected Yet";
         endTime = "Not selected Yet";
         task = "";
+        inputData();
     }
 
   @override
   Widget build(BuildContext context) {
-
+    
     Future selectTime() async{
       try{
         picked = await showTimePicker(
@@ -61,9 +64,11 @@ class _AddState extends State<Add> {
     }
 
     return Scaffold(
+      key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Colors.blue[900],
       ),
+      
       body: Container(
         child: Form(
           key: _formKey,
@@ -73,6 +78,7 @@ class _AddState extends State<Add> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
+                  
                   Row(
                     mainAxisAlignment: MainAxisAlignment.start,
                     children: <Widget>[
@@ -87,7 +93,9 @@ class _AddState extends State<Add> {
                       Text("    Start time: $startTime", style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                     ],
                   ),
-                  SizedBox(height: 20,),
+                  
+                  SizedBox(height: 30,),
+                  
                   Row(
                      mainAxisAlignment: MainAxisAlignment.start,
                      children: <Widget>[
@@ -102,7 +110,9 @@ class _AddState extends State<Add> {
                       Text("    End time: $endTime" , style: TextStyle(fontSize: 15, fontWeight: FontWeight.bold),),
                     ],
                   ),
-                  SizedBox(height: 20,),
+                  
+                  SizedBox(height: 40,),
+                  
                   TextFormField(
                     cursorColor: Colors.blue[900],
                     validator: (value){
@@ -115,7 +125,9 @@ class _AddState extends State<Add> {
                       task = val;
                     });},
                   ),
+                  
                   SizedBox(height: 20,),
+                  
                   MaterialButton(
                     child: Text('Create', style: TextStyle(color: Colors.white, fontSize: 20),),
                     padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
@@ -123,7 +135,16 @@ class _AddState extends State<Add> {
                     color: Color(0Xff7ac143),
                     onPressed: (){
                       if(startTime == "Not selected Yet"|| endTime=="Not selected Yet"){
-                        showAlert();
+                        showAlert(context);
+                      }
+                      else{
+                        createRecord(startTime, endTime, task, deleted, user);
+                        showSnackBar();
+                        _formKey.currentState.reset();
+                        setState(() {
+                          startTime = "Not selected Yet";
+                          endTime = "Not selected Yet";
+                        });
                       }
                     },
                   ),
