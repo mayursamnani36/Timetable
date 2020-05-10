@@ -50,7 +50,7 @@ class _HomeState extends State<Home> {
               ),
               accountName: Text(
                 name,
-                style: TextStyle(fontSize: 25, color: Color(0Xff7ac143)),
+                style: TextStyle(fontSize: 25, color: Colors.white, fontWeight: FontWeight.bold),
               ),
               accountEmail: Text(
                 email,

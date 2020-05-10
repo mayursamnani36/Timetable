@@ -13,20 +13,28 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<FirebaseUser>.value(
-      value: AuthService().user,
-      child: MaterialApp(
-        theme: ThemeData(
-          primarySwatch: Colors.indigo,
-          fontFamily: 'Montserrat',
+    return GestureDetector(
+      onTap: (){
+        FocusScopeNode currentFocus = FocusScope.of(context);
+        if (!currentFocus.hasPrimaryFocus) {
+          currentFocus.unfocus();
+        }
+      },
+      child: StreamProvider<FirebaseUser>.value(
+        value: AuthService().user,
+        child: MaterialApp(
+          theme: ThemeData(
+            primarySwatch: Colors.indigo,
+            fontFamily: 'Montserrat',
+          ),
+          routes: {
+            '/': (context)=> Wrapper(),
+            '/loginroute': (context) => Login(),
+            '/registerroute': (context) => Register(),
+            '/signinroute': (context) => SignIn(),
+            '/addroute': (context) => Add(),
+          },
         ),
-        routes: {
-          '/': (context)=> Wrapper(),
-          '/loginroute': (context) => Login(),
-          '/registerroute': (context) => Register(),
-          '/signinroute': (context) => SignIn(),
-          '/addroute': (context) => Add(),
-        },
       ),
     );
   }
