@@ -4,6 +4,7 @@ import 'package:timetable/screens/authenticate/login.dart';
 import 'package:timetable/screens/authenticate/register.dart';
 import 'package:timetable/screens/authenticate/sign_in.dart';
 import 'package:timetable/screens/home/add.dart';
+import 'package:timetable/screens/home/home.dart';
 import 'package:timetable/screens/wrapper.dart';
 import 'package:provider/provider.dart';
 import 'package:timetable/services/auth.dart';
@@ -29,6 +30,7 @@ class MyApp extends StatelessWidget {
           ),
           routes: {
             '/': (context)=> Wrapper(),
+            '/homeroute': (context) => Home(),
             '/loginroute': (context) => Login(),
             '/registerroute': (context) => Register(),
             '/signinroute': (context) => SignIn(),
