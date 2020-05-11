@@ -9,7 +9,7 @@ final _databaseReference = Firestore.instance;
       builder: (BuildContext context){
         return AlertDialog(
           title: Text("Alert"),
-          content: Text("Choose a valid Time"),
+          content: Text("Choose a valid time and task"),
           actions: <Widget>[
             FlatButton(child: Text("Close"), onPressed: (){Navigator.pop(context);},),
           ],
@@ -18,13 +18,12 @@ final _databaseReference = Firestore.instance;
     );
   }
 
-void createRecord(String startTime, String endTime, String task, bool deleted, FirebaseUser user)async{
+void createRecord(String startTime, String endTime, String task,FirebaseUser user)async{
       await _databaseReference.collection(user.uid).document(task).setData(
         {
           'startTime': startTime,
           'endTime': endTime,
           'task': task,
-          'deleted': deleted
         }
       );
     }

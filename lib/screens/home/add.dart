@@ -16,7 +16,6 @@ class _AddState extends State<Add> {
     TimeOfDay _time = TimeOfDay.now();
     TimeOfDay picked;
     String startTime, endTime, task;
-    bool deleted = false;
     FirebaseUser user;
     final _formKey = GlobalKey<FormState>();
     final GlobalKey<ScaffoldState> _scaffoldKey = new GlobalKey<ScaffoldState>();
@@ -134,11 +133,11 @@ class _AddState extends State<Add> {
                     splashColor: Colors.blue[900],
                     color: Color(0Xff7ac143),
                     onPressed: (){
-                      if(startTime == "Not selected Yet"|| endTime=="Not selected Yet"){
+                      if(startTime == "Not selected Yet"|| endTime=="Not selected Yet" || !_formKey.currentState.validate()){
                         showAlert(context);
                       }
                       else{
-                        createRecord(startTime, endTime, task, deleted, user);
+                        createRecord(startTime, endTime, task, user);
                         showSnackBar();
                         _formKey.currentState.reset();
                         setState(() {
