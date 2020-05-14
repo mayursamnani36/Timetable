@@ -25,6 +25,7 @@ class MyApp extends StatelessWidget {
         value: AuthService().user,
         child: MaterialApp(
           theme: ThemeData(
+            errorColor: Colors.redAccent,
             primarySwatch: Colors.indigo,
             fontFamily: 'Montserrat',
           ),

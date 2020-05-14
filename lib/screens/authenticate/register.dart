@@ -84,11 +84,11 @@ class _RegisterState extends State<Register> {
                     onPressed: ()async{
                       try{
                         if(_formKey.currentState.validate()){
-                          dynamic result = AuthService().registerWithEmailAndPassword(email, password);
+                          dynamic result = await AuthService().registerWithEmailAndPassword(email, password);
                           if(result==null){setState(() {
                             error = 'Email not valid or already in use';
                           });}
-                          else{Navigator.pushNamed(context, '/');}
+                          else{Navigator.pop(context);}
                         }
                       }
                       on PlatformException catch(e){
@@ -106,7 +106,7 @@ class _RegisterState extends State<Register> {
                  SizedBox(height: 20),
                  Text(
                    error,
-                   style: TextStyle(color: Colors.red, fontSize: 14),
+                   style: TextStyle(color: Colors.redAccent, fontSize: 20),
                  )
               ],
             ),

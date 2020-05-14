@@ -86,11 +86,11 @@ class _LoginState extends State<Login> {
                     onPressed: ()async{
                       try{
                         if(_formKey.currentState.validate()){
-                          dynamic result = AuthService().signInWithEmailAndPassword(email, password);
+                          dynamic result = await AuthService().signInWithEmailAndPassword(email, password);
                           if(result==null){setState(() {
                             error = 'Could not sign in';
                           });}
-                          else{Navigator.pushNamed(context, '/');}
+                          else{Navigator.pop(context);}
                         }
                       }
                       on PlatformException catch(e){
@@ -108,7 +108,7 @@ class _LoginState extends State<Login> {
                  SizedBox(height: 20),
                  Text(
                    error,
-                   style: TextStyle(color: Colors.red, fontSize: 14),
+                   style: TextStyle(color: Colors.redAccent, fontSize: 20),
                  )
               ],
             ),

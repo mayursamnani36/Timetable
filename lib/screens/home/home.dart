@@ -109,7 +109,6 @@ class _HomeState extends State<Home> {
               onTap: () {
                 googleSignOut();
                 Navigator.pop(context);
-                Navigator.pushNamed(context, '/signinroute');
               },
             ),
           ],
