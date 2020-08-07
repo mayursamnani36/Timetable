@@ -61,7 +61,7 @@ class _HomeState extends State<Home> {
 
   @override 
   Widget build(BuildContext context) {
-    print(currentUser);
+    //print(currentUser);
     return loading==true? Loading() : Scaffold(
       
       appBar: AppBar(
