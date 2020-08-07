@@ -1,16 +1,18 @@
-# timetable
+# Timetable
+Hello there, if you want to clone my project here are the steps to clone it on your local machine.<br>
 
-Timetable app
+## Clone the project
+Use this command to clone the project.<br><br>
+`git clone https://github.com/mayursamnani36/Timetable.git`
 
-## Getting Started
+## Installing requirements
+To install requirements related to this project run this command.<br><br>
+`flutter pub get`<br>
 
-This project is a starting point for a Flutter application.
+## Running the app
+First you need to create a andorid emulator using adb manager in android studio.<br>
+Then you can click on the play button in android studio selecting your created emulator.<br>
+To run the app from terminal use this command.<br><br>
+`flutter run`
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
-
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Drop a star if you like it.
